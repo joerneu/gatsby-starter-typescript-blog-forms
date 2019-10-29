@@ -1,0 +1,39 @@
+{
+  "files.exclude": {
+    ".cache/": true,
+    ".git/": true,
+    "node_modules/": false,
+    "public/": false
+  },
+  "search.exclude": {
+    "**/.cache": true,
+    "**/node_modules": true,
+    "**/public": true
+  },
+  "editor.rulers": [
+    120
+  ],
+  "editor.tabSize": 4,
+  "editor.formatOnSave": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    {
+      "language": "javascript",
+      "autoFix": true
+    },
+    {
+      "language": "javascriptreact",
+      "autoFix": true
+    },
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ],
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "debug.node.autoAttach": "on"
+}
