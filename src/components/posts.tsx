@@ -3,14 +3,13 @@
 import { jsx } from "@emotion/core";
 import { useTheme } from "emotion-theming";
 
-import { Link } from "gatsby";
-
 import { BlogPost } from "../types/blog";
 import { SiteLocation, Social } from "../types/site";
 
 import { H2, P, Theme } from "../theme";
 
 import Layout from "./layout";
+import Link from "./link";
 import SEO from "./seo";
 
 interface PostsProps {
@@ -31,15 +30,7 @@ const Posts = ({ location, posts, siteTitle: _siteTitle, socialLinks: _socialLin
                 return (
                     <div key={node.slug}>
                         <H2 css={{ marginBottom: 1 }}>
-                            <Link
-                                css={{
-                                    color: theme.colors.primary,
-                                    textDecoration: "none"
-                                }}
-                                to={node.slug}
-                            >
-                                {title}
-                            </Link>
+                            <Link to={node.slug}>{title}</Link>
                         </H2>
                         <P
                             css={{

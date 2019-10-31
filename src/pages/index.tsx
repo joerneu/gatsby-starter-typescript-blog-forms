@@ -3,18 +3,18 @@
 import { jsx } from "@emotion/core";
 import { useTheme } from "emotion-theming";
 
-import { Link } from "gatsby";
-
 import { useForm, useInput } from "formite-html";
 
+import { PageProps } from "../types/site";
+
 import { H1, H2, P, Theme } from "../theme";
+import { UniversalMargin } from "../theme/site-theme";
 
 import Button from "../components/button";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-
-import { PageProps } from "../types/site";
 import Input from "../components/input";
+import Layout from "../components/layout";
+import Link from "../components/link";
+import SEO from "../components/seo";
 
 const inputStyle = {
     marginRight: 8
@@ -52,33 +52,27 @@ const Home = ({ location }: PageProps) => {
     return (
         <Layout path={location.pathname}>
             <SEO title="Home" />
-            <H1 css={{ marginBottom: 1 }}>Home page</H1>
+            <H1>Home page</H1>
             <P>Welcome</P>
             <P>
-                <Link
-                    css={{
-                        color: theme.colors.primary,
-                        textDecoration: "none"
-                    }}
-                    to={"/blog"}
-                >
-                    Go to blog
-                </Link>
+                <Link to={"/blog"}>Go to blog</Link>
             </P>
-            <H2>Subscribe to newsletter</H2>
-            <Form css={{ display: "flex", maxWidth: 560 }}>
+            <H2 css={{ color: theme.colors.secondaryText }}>Subscribe to newsletter</H2>
+            <Form css={{ display: "flex", margin: UniversalMargin, maxWidth: 560 }}>
                 <Input css={inputStyle} type="text" placeholder="Name" {...useInput(fields.name, nameRequired)} />
                 <Input css={inputStyle} type="email" placeholder="Email" {...useInput(fields.email, emailValid)} />
                 <Button type="submit" disabled={!(canSubmit && isDirty)}>
                     Subscribe (Test)
                 </Button>
             </Form>
-            <p css={{ fontSize: theme.fontSizes[0] }}>
-                This is a demo site. Clicking the button does not subscribe to anything.
-            </p>
-            <p css={{ fontSize: theme.fontSizes[0] }}>
-                The form uses <a href="https://www.formite.org">Formite</a> (React Hook Form Library).
-            </p>
+            <P>
+                <small>This is a demo site. Clicking the button does not subscribe to anything.</small>
+            </P>
+            <P>
+                <small>
+                    The form uses <a href="https://www.formite.org">Formite</a> (React Hook Form Library).
+                </small>
+            </P>
         </Layout>
     );
 };
