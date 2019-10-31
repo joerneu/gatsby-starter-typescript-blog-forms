@@ -8,17 +8,12 @@ import { useForm, useInput } from "formite-html";
 import { PageProps } from "../types/site";
 
 import { H1, H2, P, Theme } from "../theme";
-import { UniversalMargin } from "../theme/site-theme";
 
 import Button from "../components/button";
 import Input from "../components/input";
 import Layout from "../components/layout";
 import Link from "../components/link";
 import SEO from "../components/seo";
-
-const inputStyle = {
-    marginRight: 8
-};
 
 const nameRequired = (v: string) => {
     if (!v) {
@@ -58,10 +53,10 @@ const Home = ({ location }: PageProps) => {
                 <Link to={"/blog"}>Go to blog</Link>
             </P>
             <H2 css={{ color: theme.colors.secondaryText }}>Subscribe to newsletter</H2>
-            <Form css={{ display: "flex", margin: UniversalMargin, maxWidth: 560 }}>
-                <Input css={inputStyle} type="text" placeholder="Name" {...useInput(fields.name, nameRequired)} />
-                <Input css={inputStyle} type="email" placeholder="Email" {...useInput(fields.email, emailValid)} />
-                <Button type="submit" disabled={!(canSubmit && isDirty)}>
+            <Form css={{ display: "flex", alignItems: "center", margin: theme.sizes.universalMargin, maxWidth: 640 }}>
+                <Input type="text" placeholder="Name" {...useInput(fields.name, nameRequired)} />
+                <Input type="email" placeholder="Email" {...useInput(fields.email, emailValid)} />
+                <Button type="submit" disabled={!(canSubmit && isDirty)} variant="primary">
                     Subscribe (Test)
                 </Button>
             </Form>

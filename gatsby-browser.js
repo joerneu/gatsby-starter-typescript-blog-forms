@@ -24,9 +24,9 @@ exports.wrapRootElement = ({ element }) => {
                         // Prevent adjustments of font size after orientation changes in mobile.
                         "-webkit-text-size-adjust": "100%"
                     },
-                    // "*": {
-                    //     fontSize: Theme.BaseFontSize
-                    // },
+                    "*": {
+                        fontSize: Theme.BaseFontSize
+                    },
                     body: { margin: 0, color: SiteTheme.colors.text, backgroundColor: SiteTheme.colors.background },
                     // Correct display for Edge & Firefox.
                     details: {

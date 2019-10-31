@@ -13,11 +13,6 @@ export const SmallFontSize = "0.75em";
 
 export const UniversalMargin = "0.5rem";
 export const UniversalPadding = "0.5rem";
-export const UniversalBorderRadius = "0.125rem";
-export const UniversalBoxShadow = "none";
-
-export const LinkColor = "#0277bd";
-export const LinkVisitedColor = "#01579b";
 
 export const SiteTheme = {
     colors: {
@@ -34,7 +29,21 @@ export const SiteTheme = {
         headerBackground: "#f8f8f8",
         headerHoverBackground: "#f0f0f0",
         headerText: "#444",
-        headerBorder: "#ddd"
+        headerBorder: "#ddd",
+        inputBackground: "#f8f8f8",
+        inputText: "#111",
+        inputBorder: "#ddd",
+        inputFocus: "#0288d1",
+        inputInvalid: "#d32f2f",
+        buttonBackground: "#e2e2e2",
+        buttonHoverBackground: "#dcdcdc",
+        buttonText: "#212121",
+        buttonBorder: "transparent",
+        buttonHoverBorder: "transparent",
+        buttonGroupBorder: "rgba(124,124,124, 0.54)",
+        buttonPrimaryBackground: "#1976d2",
+        buttonPrimaryHoverBackground: "#1565c0",
+        buttonPrimaryText: "#f8f8f8"
     },
     fonts: {
         body: BaseFontFamily,
@@ -52,9 +61,12 @@ export const SiteTheme = {
     },
     fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
     sizes: {
-        universalMargin: "0.5rem",
-        universalPadding: "0.5rem",
+        universalMargin: UniversalMargin,
+        universalPadding: UniversalPadding,
         border: "0.0625rem",
         headerHeight: "3.1875rem"
+    },
+    radii: {
+        universalBorderRadius: "0.125rem"
     }
 };
