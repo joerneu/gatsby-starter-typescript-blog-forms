@@ -1,12 +1,11 @@
 /** @jsx jsx */
 
 import { jsx } from "@emotion/core";
-import { useTheme } from "emotion-theming";
 
 import { BlogPost } from "../types/blog";
 import { SiteLocation, Social } from "../types/site";
 
-import { H2, P, Theme } from "../theme";
+import { H2, P } from "../theme";
 
 import Layout from "./layout";
 import Link from "./link";
@@ -20,7 +19,6 @@ interface PostsProps {
 }
 
 const Posts = ({ location, posts, siteTitle: _siteTitle, socialLinks: _socialLinks }: PostsProps) => {
-    const theme = useTheme<Theme>();
     return (
         <Layout path={location.pathname}>
             <SEO title="All posts" keywords={["blog", "gatsby", "javascript", "react"]} />
@@ -32,12 +30,8 @@ const Posts = ({ location, posts, siteTitle: _siteTitle, socialLinks: _socialLin
                         <H2 css={{ marginBottom: 1 }}>
                             <Link to={node.slug}>{title}</Link>
                         </H2>
-                        <P
-                            css={{
-                                fontSize: theme.fontSizes[0]
-                            }}
-                        >
-                            {node.date}
+                        <P>
+                            <small>{node.date}</small>
                         </P>
                         <P>{node.excerpt}</P>
                     </div>

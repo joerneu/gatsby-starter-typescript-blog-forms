@@ -14,7 +14,6 @@ interface ButtonProps {
 
 const Button = ({
     variant,
-    children,
     ...props
 }: ButtonProps & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) => {
     const theme = useTheme<Theme>();
@@ -76,9 +75,7 @@ const Button = ({
                       }
             ]}
             {...props}
-        >
-            {children}
-        </ReakitButton>
+        />
     );
 };
 

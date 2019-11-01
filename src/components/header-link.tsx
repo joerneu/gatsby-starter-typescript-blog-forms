@@ -8,19 +8,18 @@ import { useTheme } from "emotion-theming";
 
 import { Theme } from "../theme";
 
-// import { PageContext } from "../types/context";
-// import { useContext } from "react";
+import { PageContext } from "../types/context";
+import { useContext } from "react";
 
 interface HeaderLinkProps {
     text: string;
     to: string;
 }
 const HeaderLink = ({ text, to }: HeaderLinkProps) => {
-    // const { path } = useContext(PageContext);
-    // if (path === to) {
-    //     return <span css={{ marginRight: 8 }}>{text}</span>;
-    // }
+    const { path } = useContext(PageContext);
     const theme = useTheme<Theme>();
+    const pathBase = "/" + path.split("/")[1];
+    const borderColor = pathBase === to ? theme.colors.headerActiveBorder : theme.colors.headerBackground;
     return (
         <Link
             css={{
@@ -38,6 +37,7 @@ const HeaderLink = ({ text, to }: HeaderLinkProps) => {
                 color: theme.colors.headerText,
                 border: 0,
                 borderRadius: 0,
+                borderBottom: `calc(2 * ${theme.sizes.border}) solid ${borderColor}`,
                 padding: `${theme.sizes.universalPadding} calc(1.5 * ${theme.sizes.universalPadding})`,
                 textDecoration: "none",
                 cursor: "pointer",

@@ -1,6 +1,6 @@
 import { SiteTheme } from "./site-theme";
-import { H1, H2, H3, H4, P } from "./components";
+import { A, H1, H2, H3, H4, P } from "./components";
 
 type Theme = typeof SiteTheme;
 
-export { Theme, H1, H2, H3, H4, P };
+export { A, Theme, H1, H2, H3, H4, P };

@@ -16,11 +16,7 @@ interface LinkProps {
     to: string;
 }
 
-const Link = ({ children, ...props }: React.PropsWithChildren<LinkProps>) => {
-    // const { path } = useContext(PageContext);
-    // if (path === to) {
-    //     return <span css={{ marginRight: 8 }}>{text}</span>;
-    // }
+const Link = (props: React.PropsWithChildren<LinkProps>) => {
     const theme = useTheme<Theme>();
     return (
         <GatsbyLink
@@ -37,9 +33,7 @@ const Link = ({ children, ...props }: React.PropsWithChildren<LinkProps>) => {
                 }
             }}
             {...props}
-        >
-            {children}
-        </GatsbyLink>
+        />
     );
 };
 

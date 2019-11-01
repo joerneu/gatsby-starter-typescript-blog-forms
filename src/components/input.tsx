@@ -6,10 +6,7 @@ import { useTheme } from "emotion-theming";
 
 import { Theme } from "../theme";
 
-const Input = ({
-    children,
-    ...props
-}: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>) => {
+const Input = (props: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>) => {
     const theme = useTheme<Theme>();
     return (
         <input
@@ -32,26 +29,24 @@ const Input = ({
                 // Background, color and border should not be unassigned, as the browser defaults will apply
                 background: theme.colors.inputBackground,
                 color: theme.colors.inputText,
+                outline: "none",
+                boxShadow: "none",
                 border: `${theme.sizes.border} solid ${theme.colors.inputBorder}`,
                 borderRadius: theme.radii.universalBorderRadius,
                 margin: `calc(${theme.sizes.universalMargin} / 2)`,
                 padding: `${theme.sizes.universalPadding} calc(1.5 * ${theme.sizes.universalPadding})`,
                 "&:hover, &:focus": {
-                    borderColor: theme.colors.inputFocus,
-                    boxShadow: "none"
+                    borderColor: theme.colors.inputFocus
                 },
                 "&:invalid, &:focus:invalid": {
-                    borderColor: theme.colors.inputInvalid,
-                    boxShadow: "none"
+                    borderColor: theme.colors.inputInvalid
                 },
                 "&[readonly]": {
                     background: theme.colors.secondaryBackground
                 }
             }}
             {...props}
-        >
-            {children}
-        </input>
+        />
     );
 };
 

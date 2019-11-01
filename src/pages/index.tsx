@@ -7,7 +7,7 @@ import { useForm, useInput } from "formite-html";
 
 import { PageProps } from "../types/site";
 
-import { H1, H2, P, Theme } from "../theme";
+import { A, H1, H2, P, Theme } from "../theme";
 
 import Button from "../components/button";
 import Input from "../components/input";
@@ -54,8 +54,18 @@ const Home = ({ location }: PageProps) => {
             </P>
             <H2 css={{ color: theme.colors.secondaryText }}>Subscribe to newsletter</H2>
             <Form css={{ display: "flex", alignItems: "center", margin: theme.sizes.universalMargin, maxWidth: 640 }}>
-                <Input type="text" placeholder="Name" {...useInput(fields.name, nameRequired)} />
-                <Input type="email" placeholder="Email" {...useInput(fields.email, emailValid)} />
+                <Input
+                    type="text"
+                    placeholder="Name"
+                    required={fields.name.touched}
+                    {...useInput(fields.name, nameRequired)}
+                />
+                <Input
+                    type="email"
+                    placeholder="Email"
+                    required={fields.email.touched}
+                    {...useInput(fields.email, emailValid)}
+                />
                 <Button type="submit" disabled={!(canSubmit && isDirty)} variant="primary">
                     Subscribe (Test)
                 </Button>
@@ -65,7 +75,7 @@ const Home = ({ location }: PageProps) => {
             </P>
             <P>
                 <small>
-                    The form uses <a href="https://www.formite.org">Formite</a> (React Hook Form Library).
+                    The form uses <A href="https://www.formite.org">Formite</A> (React Hook Form Library).
                 </small>
             </P>
         </Layout>

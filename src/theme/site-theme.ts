@@ -22,12 +22,12 @@ export const SiteTheme = {
         secondaryBackground: "#f0f0f0",
         linkColor: "#0277bd",
         linkVisitedColor: "#01579b",
-        blockquote: "#f57c00",
-        sidebar: "#1565c0",
+        preformatted: "#1565c0",
         border: "#aaa",
         secondaryBorder: "#ddd",
         headerBackground: "#f8f8f8",
         headerHoverBackground: "#f0f0f0",
+        headerActiveBorder: "#1565c0",
         headerText: "#444",
         headerBorder: "#ddd",
         inputBackground: "#f8f8f8",
@@ -48,7 +48,7 @@ export const SiteTheme = {
     fonts: {
         body: BaseFontFamily,
         heading: BaseFontFamily,
-        monospace: "Menlo, monospace"
+        monospace: "Menlo, Consolas, monospace"
     },
     fontWeights: {
         body: 400,
@@ -56,10 +56,12 @@ export const SiteTheme = {
         bold: 700
     },
     lineHeights: {
-        body: 1.5,
+        body: BaseLineHeight,
         heading: 1.2
     },
-    fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
+    fontSizes: {
+        code: "0.85em"
+    },
     sizes: {
         universalMargin: UniversalMargin,
         universalPadding: UniversalPadding,
@@ -68,5 +70,8 @@ export const SiteTheme = {
     },
     radii: {
         universalBorderRadius: "0.125rem"
+    },
+    shadows: {
+        universalBoxShadow: "none"
     }
 };
