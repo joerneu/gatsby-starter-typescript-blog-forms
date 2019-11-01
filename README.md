@@ -61,7 +61,7 @@ Tip: Use the Theme specification from Theme UI as a reference for your own theme
 
 UI Frameworks usually add a couple of 100K of JavaScript code or CSS to your bundle. When developing a website that is not necessary. This starter demonstrates how you can add a form in a couple of 10K of JavaScript. Only if you have to support old browsers (< IE11) you might want to use an UI Framework like Bootstrap.
 
-However, this starter is very minimal. If you prefer you can add any UI Framework that you like. (In this case you could remove Emotion if the UI Framework supplies its own theming.)
+However, this starter is very minimal and the styling is based on [mini.css](https://minicss.org). If you prefer you can add any UI Framework that you like. (In this case you could remove Emotion if the UI Framework supplies its own theming.)
 
 ### Why doesn't it use gatsby-plugin-emotion?
 
