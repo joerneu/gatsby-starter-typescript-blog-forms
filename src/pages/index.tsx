@@ -14,6 +14,8 @@ import Input from "../components/input";
 import Layout from "../components/layout";
 import Link from "../components/link";
 import SEO from "../components/seo";
+import Row from "../components/row";
+import Col from "../components/col";
 
 const nameRequired = (v: string) => {
     if (!v) {
@@ -53,22 +55,37 @@ const Home = ({ location }: PageProps) => {
                 <Link to={"/blog"}>Go to blog</Link>
             </P>
             <H2 css={{ color: theme.colors.secondaryText }}>Subscribe to newsletter</H2>
-            <Form css={{ display: "flex", alignItems: "center", margin: theme.sizes.universalMargin, maxWidth: 640 }}>
-                <Input
-                    type="text"
-                    placeholder="Name"
-                    required={fields.name.touched}
-                    {...useInput(fields.name, nameRequired)}
-                />
-                <Input
-                    type="email"
-                    placeholder="Email"
-                    required={fields.email.touched}
-                    {...useInput(fields.email, emailValid)}
-                />
-                <Button type="submit" disabled={!(canSubmit && isDirty)} variant="primary">
-                    Subscribe (Test)
-                </Button>
+            <Form css={{ margin: theme.sizes.universalMargin, maxWidth: 640 }}>
+                <Row css={{ justifyContent: "space-between", alignItems: "center", marginRight: 8 }} columns={48}>
+                    <Col sm={48} md={17}>
+                        <Input
+                            type="text"
+                            css={{ width: "100%" }}
+                            placeholder="Name"
+                            required={fields.name.touched}
+                            {...useInput(fields.name, nameRequired)}
+                        />
+                    </Col>
+                    <Col sm={48} md={17}>
+                        <Input
+                            type="email"
+                            css={{ width: "100%" }}
+                            placeholder="Email"
+                            required={fields.email.touched}
+                            {...useInput(fields.email, emailValid)}
+                        />
+                    </Col>
+                    <Col sm={48} md={12}>
+                        <Button
+                            type="submit"
+                            css={{ marginLeft: 4 }}
+                            disabled={!(canSubmit && isDirty)}
+                            variant="primary"
+                        >
+                            Subscribe (Test)
+                        </Button>
+                    </Col>
+                </Row>
             </Form>
             <P>
                 <small>This is a demo site. Clicking the button does not subscribe to anything.</small>

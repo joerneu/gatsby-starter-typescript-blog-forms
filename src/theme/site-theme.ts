@@ -14,6 +14,8 @@ export const SmallFontSize = "0.75em";
 export const UniversalMargin = "0.5rem";
 export const UniversalPadding = "0.5rem";
 
+const Breakpoints = ["768px", "1280px"];
+
 export const SiteTheme = {
     colors: {
         background: "#fff",
@@ -73,5 +75,8 @@ export const SiteTheme = {
     },
     shadows: {
         universalBoxShadow: "none"
-    }
+    },
+    breakpoints: Breakpoints,
+    // Predefined media queries
+    mediaQueries: Breakpoints.map(bp => `@media (min-width: ${bp})`)
 };
