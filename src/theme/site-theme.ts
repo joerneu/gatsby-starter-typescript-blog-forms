@@ -78,5 +78,5 @@ export const SiteTheme = {
     },
     breakpoints: Breakpoints,
     // Predefined media queries
-    mediaQueries: Breakpoints.map(bp => `@media (min-width: ${bp})`)
+    mediaQueries: Breakpoints.map(bp => `@media screen and (min-width: ${bp})`)
 };

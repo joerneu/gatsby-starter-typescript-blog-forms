@@ -6,7 +6,7 @@ This starter uses the official [Gatsby blog core theme](https://www.npmjs.com/pa
 
 All components and pages are implemented using TypeScript.
 
-Minimal styling, responsive layout and a theme is implemented using [Emotion](https://www.emotion.sh). It can easily be extended to style your own web site.
+Minimal styling, responsive layout with mobile "hamburger" navigation menu and a theme is implemented using [Emotion](https://www.emotion.sh). It can easily be extended to style your own web site.
 
 The form uses the [Formite Library](https://www.formite.org) (React Hooks Forms) for form validation and form submission. The form visuals are implemented with [Reakit](https://reakit.io/) and Emotion.
 
