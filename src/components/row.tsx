@@ -1,31 +1,10 @@
-/** @jsx jsx */
+import React from "react";
 
-import { jsx } from "@emotion/core";
+import Responsive, { RowProps } from "./responsive";
 
-import { RowContext } from "../types/context";
-
-interface RowProps {
-    columns: number;
-}
-
-const Row = ({
-    columns,
-    ...props
-}: RowProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>) => {
-    return (
-        <RowContext.Provider value={{ columns }}>
-            <div
-                css={{
-                    boxSizing: "border-box",
-                    display: "flex",
-                    flex: "0 1 auto",
-                    flexFlow: "row wrap"
-                }}
-                {...props}
-            />
-        </RowContext.Provider>
-    );
-};
+const Row = (props: RowProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>) => (
+    <Responsive {...props} />
+);
 
 Row.defaultProps = {
     columns: 12
