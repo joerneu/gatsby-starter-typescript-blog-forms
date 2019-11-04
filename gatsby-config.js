@@ -5,7 +5,8 @@ module.exports = {
             options: { basePath: "/blog" }
         },
         "gatsby-plugin-react-helmet",
-        "gatsby-plugin-typescript"
+        "gatsby-plugin-typescript",
+        "gatsby-plugin-netlify-cms"
     ],
     siteMetadata: {
         title: "My Website Title",
