@@ -45,23 +45,28 @@ export interface ColumnProps {
     lg?: ColumnValue;
 }
 
-interface ResponsiveProps extends RowProps, ColumnProps {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    as?: string | keyof React.ReactHTML | React.FunctionComponent<any> | React.ComponentClass<any, any>;
-    [name: string]: unknown;
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type As<P = any> = React.ReactType<P>;
 
-const Responsive = ({
+type PropsWithAs<P, T extends As> = P &
+    Omit<React.ComponentProps<T>, "as" | keyof P> & {
+        as?: T;
+        children?: React.ReactNode;
+    };
+
+interface ResponsiveProps extends RowProps, ColumnProps {}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Responsive = <T extends React.ElementType<any> = "div">({
     as,
     sm,
     md,
     lg,
     columns,
     ...props
-}: ResponsiveProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) => {
+}: PropsWithAs<ResponsiveProps, T> & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) => {
     const rowContext = useContext(RowContext);
     const theme = useTheme<Theme>();
-    const elementType = as || "div";
     const css: Interpolation[] = [];
     // Setting the sm, md or lg property makes it a column
     if (sm || md || lg) {
@@ -87,6 +92,7 @@ const Responsive = ({
             flexFlow: "row wrap"
         });
     }
+    const elementType = as || "div";
     const element = jsx(elementType, {
         css,
         ...props
