@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { jsx, Interpolation } from "@emotion/core";
+import { css, Interpolation, jsx } from "@emotion/core";
 
 import { useTheme } from "emotion-theming";
 
@@ -8,24 +8,35 @@ import { RowContext } from "../types/context";
 
 import { Theme } from "../theme";
 
-const FluidStyle = {
+const ShrinkStyle = css({
+    display: "block",
+    flexGrow: 0,
+    flexShrink: 1,
+    flexBasis: "auto",
+    maxWidth: "none"
+});
+
+const ExpandStyle = css({
     display: "block",
     flexGrow: 1,
     flexShrink: 0,
     flexBasis: "auto",
     maxWidth: "100%"
-};
+});
 
-const createStyle = (columns: number, value?: ColumnValue): Interpolation => {
-    if (!value || value == "fluid") {
-        return FluidStyle;
+const createStyle = (columns: number, display: string, value?: ColumnValue): Interpolation => {
+    if (!value || value == "shrink") {
+        return ShrinkStyle;
+    }
+    if (value == "expand") {
+        return ExpandStyle;
     }
     if (value == "hidden") {
         return { display: "none" };
     }
     const percentage = ((value / columns) * 100).toString(10) + "%";
     return {
-        display: "block",
+        display,
         flexGrow: 0,
         flexShrink: 0,
         flexBasis: percentage,
@@ -37,7 +48,7 @@ export interface RowProps {
     columns?: number;
 }
 
-type ColumnValue = number | "fluid" | "hidden";
+type ColumnValue = number | "shrink" | "expand" | "hidden";
 
 export interface ColumnProps {
     sm?: ColumnValue;
@@ -68,21 +79,6 @@ const Responsive = <T extends React.ElementType<any> = "div">({
     const rowContext = useContext(RowContext);
     const theme = useTheme<Theme>();
     const css: Interpolation[] = [];
-    // Setting the sm, md or lg property makes it a column
-    if (sm || md || lg) {
-        const rowColumns = rowContext ? rowContext.columns : 12;
-        css.push(createStyle(rowColumns, sm));
-        if (md) {
-            css.push({
-                [theme.mediaQueries[0]]: createStyle(rowColumns, md)
-            });
-        }
-        if (lg) {
-            css.push({
-                [theme.mediaQueries[1]]: createStyle(rowColumns, lg)
-            });
-        }
-    }
     // Setting the columns property makes it a row
     if (columns) {
         css.push({
@@ -91,6 +87,22 @@ const Responsive = <T extends React.ElementType<any> = "div">({
             flex: "0 1 auto",
             flexFlow: "row wrap"
         });
+    }
+    // Setting the sm, md or lg property makes it a column
+    if (sm || md || lg) {
+        const rowColumns = rowContext ? rowContext.columns : 12;
+        const display = columns ? "flex" : "block";
+        css.push(createStyle(rowColumns, display, sm));
+        if (md) {
+            css.push({
+                [theme.mediaQueries[0]]: createStyle(rowColumns, display, md)
+            });
+        }
+        if (lg) {
+            css.push({
+                [theme.mediaQueries[1]]: createStyle(rowColumns, display, lg)
+            });
+        }
     }
     const elementType = as || "div";
     const element = jsx(elementType, {
