@@ -18,7 +18,19 @@ interface HeaderButtonProps {
 const HeaderButton = ({ text, onClick }: HeaderButtonProps) => {
     const theme = useTheme<Theme>();
     return (
-        <a css={getHeaderItemStyle(theme)} onClick={onClick}>
+        <a
+            css={[
+                getHeaderItemStyle(theme),
+                {
+                    textDecoration: "none",
+                    cursor: "pointer",
+                    "&:hover": {
+                        background: theme.colors.headerHoverBackground
+                    }
+                }
+            ]}
+            onClick={onClick}
+        >
             {text}
         </a>
     );

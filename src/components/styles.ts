@@ -18,10 +18,5 @@ export const getHeaderItemStyle = (theme: Theme): ObjectInterpolation<undefined>
     border: 0,
     borderRadius: 0,
     padding: `${theme.sizes.universalPadding} calc(1.5 * ${theme.sizes.universalPadding})`,
-    textDecoration: "none",
-    cursor: "pointer",
-    margin: 0,
-    "&:hover": {
-        background: theme.colors.headerHoverBackground
-    }
+    margin: 0
 });

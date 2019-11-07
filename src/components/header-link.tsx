@@ -25,13 +25,22 @@ const HeaderLink = ({ mobile, text, to }: HeaderLinkProps) => {
     const pathBase = "/" + path.split("/")[1];
     const borderBottomColor =
         !mobile && pathBase === to ? theme.colors.headerActiveBorder : theme.colors.headerBackground;
-    const css = {
-        ...getHeaderItemStyle(theme),
-        borderBottom: `calc(2 * ${theme.sizes.border}) solid ${borderBottomColor}`
-    };
-    css;
     return (
-        <Link css={css} aria-label={text} to={to}>
+        <Link
+            css={[
+                getHeaderItemStyle(theme),
+                {
+                    textDecoration: "none",
+                    cursor: "pointer",
+                    borderBottom: `calc(2 * ${theme.sizes.border}) solid ${borderBottomColor}`,
+                    "&:hover": {
+                        background: theme.colors.headerHoverBackground
+                    }
+                }
+            ]}
+            aria-label={text}
+            to={to}
+        >
             {text}
         </Link>
     );
