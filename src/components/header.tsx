@@ -1,8 +1,8 @@
 /** @jsx jsx */
 
-import React from "react";
+import React, { Fragment } from "react";
 
-import { jsx } from "@emotion/core";
+import { jsx, css } from "@emotion/core";
 
 import { useTheme } from "emotion-theming";
 
@@ -15,17 +15,29 @@ import HeaderButton from "./header-button";
 import HeaderLink from "./header-link";
 import Responsive from "./responsive";
 
-const MoreItems = React.forwardRef((props, ref) => {
+const Logo = () => {
+    const theme = useTheme<Theme>();
+    return (
+        <img
+            css={{ alignSelf: "center", padding: `0 ${theme.sizes.universalPadding}` }}
+            alt="Logo"
+            src="/images/logo.png"
+        />
+    );
+};
+
+const NavigationMenu = React.forwardRef((props, ref) => {
     const menu = useMenuState({ placement: "bottom-start" });
+    const theme = useTheme<Theme>();
     return (
         <>
-            <MenuDisclosure as={HeaderButton} text="&#9776;" {...menu} {...props} ref={ref} aria-label="Main menu" />
+            <MenuDisclosure as={HeaderButton} {...menu} {...props} ref={ref} text="&#9776;" aria-label="Main menu" />
             <Menu
                 css={{
-                    position: "absolute",
-                    width: "100%",
                     display: "flex",
-                    flexDirection: "column"
+                    flexDirection: "column",
+                    minWidth: "70%",
+                    border: `${theme.sizes.border} solid ${theme.colors.headerBorder}`
                 }}
                 {...menu}
                 aria-label="Main menu"
@@ -41,33 +53,33 @@ const MoreItems = React.forwardRef((props, ref) => {
 const Header = () => {
     const toolbar = useToolbarState({ loop: true });
     const theme = useTheme<Theme>();
+    const headerStyle = css({
+        // Always apply background color to avoid shine through
+        background: theme.colors.headerBackground,
+        color: theme.colors.headerText,
+        borderBottom: `${theme.sizes.border} solid ${theme.colors.headerBorder}`
+    });
+    const toolbarStyle = css({
+        height: theme.sizes.headerHeight,
+        padding: `calc(${theme.sizes.universalPadding} / 4) 0`
+    });
     return (
-        <Toolbar
-            {...toolbar}
-            as="header"
-            aria-label="Main toolbar"
-            css={{
-                height: theme.sizes.headerHeight,
-                // Always apply background color to avoid shine through
-                background: theme.colors.headerBackground,
-                color: theme.colors.headerText,
-                borderBottom: `${theme.sizes.border} solid ${theme.colors.headerBorder}`,
-                padding: `calc(${theme.sizes.universalPadding} / 4) 0`,
-                // Responsiveness for smaller displays, scrolls horizontally
-                whiteSpace: "nowrap",
-                overflowX: "auto",
-                overflowY: "hidden"
-            }}
-        >
-            <Responsive sm={12} md="hidden">
-                <ToolbarItem {...toolbar} as={MoreItems} />
+        <Fragment>
+            <Responsive as="header" css={headerStyle} sm={12} md="hidden" columns={2}>
+                <Toolbar {...toolbar} css={toolbarStyle} aria-label="Main navigation">
+                    <ToolbarItem {...toolbar} as={NavigationMenu} />
+                </Toolbar>
+                <Logo />
             </Responsive>
-            <Responsive sm="hidden" md={12}>
-                <ToolbarItem {...toolbar} as={HeaderLink} text="Home" to="/" />
-                <ToolbarItem {...toolbar} as={HeaderLink} text="Blog" to="/blog" />
-                <ToolbarItem {...toolbar} as={HeaderLink} text="About" to="/about" />
+            <Responsive as="header" css={headerStyle} sm="hidden" md={12} columns={2}>
+                <Logo />
+                <Toolbar {...toolbar} css={toolbarStyle} aria-label="Main toolbar">
+                    <ToolbarItem {...toolbar} as={HeaderLink} text="Home" to="/" />
+                    <ToolbarItem {...toolbar} as={HeaderLink} text="Blog" to="/blog" />
+                    <ToolbarItem {...toolbar} as={HeaderLink} text="About" to="/about" />
+                </Toolbar>
             </Responsive>
-        </Toolbar>
+        </Fragment>
     );
 };
 

@@ -1,5 +1,7 @@
 /** @jsx jsx */
 
+import React from "react";
+
 import { jsx } from "@emotion/core";
 
 import { useTheme } from "emotion-theming";
@@ -15,7 +17,8 @@ interface HeaderButtonProps {
     ref?: React.Ref<any>;
 }
 
-const HeaderButton = ({ text, onClick }: HeaderButtonProps) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const HeaderButton = React.forwardRef<any, HeaderButtonProps>(({ text, onClick, ...props }, ref) => {
     const theme = useTheme<Theme>();
     return (
         <a
@@ -24,16 +27,18 @@ const HeaderButton = ({ text, onClick }: HeaderButtonProps) => {
                 {
                     textDecoration: "none",
                     cursor: "pointer",
-                    "&:hover": {
+                    "&:hover,&:focus": {
                         background: theme.colors.headerHoverBackground
                     }
                 }
             ]}
+            ref={ref}
             onClick={onClick}
+            {...props}
         >
             {text}
         </a>
     );
-};
+});
 
 export default HeaderButton;

@@ -1,7 +1,7 @@
 {
   "name": "gatsby-starter-typescript-blog-forms",
   "description": "Gatsby starter for a website in TypeScript with a homepage, blog and forms.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "joerneu <31096117+joerneu@users.noreply.github.com>",
   "homepage": "https://gatsby-starter-typescript-blog-forms.netlify.com",
   "repository": {

@@ -18,5 +18,6 @@ export const getHeaderItemStyle = (theme: Theme): ObjectInterpolation<undefined>
     border: 0,
     borderRadius: 0,
     padding: `${theme.sizes.universalPadding} calc(1.5 * ${theme.sizes.universalPadding})`,
-    margin: 0
+    margin: 0,
+    outline: "none"
 });

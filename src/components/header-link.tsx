@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { useContext } from "react";
+import React, { useContext } from "react";
 
 import { jsx } from "@emotion/core";
 
@@ -20,12 +20,12 @@ interface HeaderLinkProps {
     to: string;
 }
 
-const HeaderLink = ({ mobile, text, to }: HeaderLinkProps) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const HeaderLink = React.forwardRef<any, HeaderLinkProps>(({ mobile, text, to, ...props }, ref) => {
     const { path } = useContext(PageContext);
     const theme = useTheme<Theme>();
     const pathBase = "/" + path.split("/")[1];
-    const borderBottomColor =
-        !mobile && pathBase === to ? theme.colors.headerActiveBorder : theme.colors.headerBackground;
+    const borderBottomColor = !mobile && pathBase === to ? theme.colors.headerActiveBorder : undefined;
     return (
         <Link
             css={[
@@ -33,18 +33,23 @@ const HeaderLink = ({ mobile, text, to }: HeaderLinkProps) => {
                 {
                     textDecoration: "none",
                     cursor: "pointer",
-                    borderBottom: `calc(2 * ${theme.sizes.border}) solid ${borderBottomColor}`,
-                    "&:hover": {
+                    "&:hover,&:focus": {
                         background: theme.colors.headerHoverBackground
                     }
+                },
+                mobile && { top: 0 },
+                borderBottomColor && {
+                    borderBottom: `calc(2 * ${theme.sizes.border}) solid ${borderBottomColor}`
                 }
             ]}
+            ref={ref}
             aria-label={text}
             to={to}
+            {...props}
         >
             {text}
         </Link>
     );
-};
+});
 
 export default HeaderLink;
