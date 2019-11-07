@@ -1,5 +1,7 @@
 /** @jsx jsx */
 
+import React from "react";
+
 import { jsx } from "@emotion/core";
 
 import { useTheme } from "emotion-theming";
@@ -7,18 +9,11 @@ import { useTheme } from "emotion-theming";
 import { useMenuState, MenuDisclosure, Menu, MenuItem } from "reakit/Menu";
 import { useToolbarState, Toolbar, ToolbarItem } from "reakit/Toolbar";
 
-import { globalHistory } from "@reach/router";
-
 import { Theme } from "../theme";
 
 import HeaderButton from "./header-button";
 import HeaderLink from "./header-link";
 import Responsive from "./responsive";
-import React from "react";
-
-globalHistory.listen(({ location }) => {
-    console.log("location changed", location);
-});
 
 const MoreItems = React.forwardRef((props, ref) => {
     const menu = useMenuState({ placement: "bottom-start" });

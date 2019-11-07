@@ -19,6 +19,7 @@ interface HeaderLinkProps {
     text: string;
     to: string;
 }
+
 const HeaderLink = ({ mobile, text, to }: HeaderLinkProps) => {
     const { path } = useContext(PageContext);
     const theme = useTheme<Theme>();
