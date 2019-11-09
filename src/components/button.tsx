@@ -36,7 +36,6 @@ const Button = ({
                     textTransform: "none",
                     // Default styling
                     display: "inline-block",
-
                     border: `${theme.sizes.border} solid ${theme.colors.buttonBorder}`,
                     borderRadius: theme.radii.universalBorderRadius,
                     padding: `${theme.sizes.universalPadding} calc(1.5 * ${theme.sizes.universalPadding})`,

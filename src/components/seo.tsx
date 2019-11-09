@@ -4,6 +4,8 @@ import { Helmet } from "react-helmet";
 
 import { useStaticQuery, graphql } from "gatsby";
 
+import { SeoQuery } from "@generated/graphql-types";
+
 // There are warnings with React >= 16.8 and react-helmet
 // See: https://github.com/nfl/react-helmet/issues/426
 // and: https://www.gatsbyjs.org/packages/gatsby-plugin-react-helmet/
@@ -19,9 +21,9 @@ interface SeoProps {
 }
 
 function SEO({ description, lang, meta, keywords, title }: SeoProps) {
-    const { site } = useStaticQuery(
+    const { site } = useStaticQuery<SeoQuery>(
         graphql`
-            query {
+            query SeoQuery {
                 site {
                     siteMetadata {
                         title
@@ -32,7 +34,10 @@ function SEO({ description, lang, meta, keywords, title }: SeoProps) {
             }
         `
     );
-    const metaDescription = description || site.siteMetadata.description;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const metaDescription = description || site!.siteMetadata!.description!;
+    // Waiting for Gatsby to support TypeScript 3.7:
+    //const metaDescription = description ?? site?.siteMetadata?.description ?? undefined;
     let metaData: MetaProps[] = [
         {
             name: "description",
@@ -56,7 +61,8 @@ function SEO({ description, lang, meta, keywords, title }: SeoProps) {
         },
         {
             name: "twitter:creator",
-            content: site.siteMetadata.author
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            content: site!.siteMetadata!.author!
         },
         {
             name: "twitter:title",
@@ -86,7 +92,8 @@ function SEO({ description, lang, meta, keywords, title }: SeoProps) {
                 lang
             }}
             title={title}
-            titleTemplate={`%s | ${site.siteMetadata.title}`}
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            titleTemplate={`%s | ${site!.siteMetadata!.title}`}
             meta={metaData}
         />
     );

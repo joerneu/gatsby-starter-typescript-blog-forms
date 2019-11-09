@@ -6,6 +6,14 @@ module.exports = {
         },
         "gatsby-plugin-react-helmet",
         "gatsby-plugin-typescript",
+        {
+            resolve: "gatsby-plugin-codegen",
+            options: {
+                localSchemaFile: "generated/graphql-schema.json",
+                output: "generated/graphql-types.d.ts",
+                outputFlat: true
+            }
+        },
         "gatsby-plugin-netlify-cms"
     ],
     siteMetadata: {

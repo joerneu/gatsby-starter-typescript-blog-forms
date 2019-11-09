@@ -13,6 +13,7 @@ The form uses the [Formite Library](https://www.formite.org) (React Hooks Forms)
 ## Goals for this starter
 
 - TypeScript for type safety, IDE comfort and error checking during development and build time.
+- Generates TypeScript types for Gatsby GraphQL queries. (Execute `yarn develop` to generate types.)
 - ESLint and Prettier for safety and consistent code style.
 - Current state of the art by using React functional components with React Hooks.
 - Minimal bundle size - therefore it does not include an UI Framework and instead uses Formite and Reakit with Emotion.
@@ -34,7 +35,7 @@ The form uses the [Formite Library](https://www.formite.org) (React Hooks Forms)
     ```shell
     cd my-blog-website/
     yarn install
-    gatsby develop
+    yarn develop
     ```
 
 3.  **Open the code and start customizing!**
