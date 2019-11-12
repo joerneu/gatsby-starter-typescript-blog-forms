@@ -12,6 +12,8 @@ collections: # A list of collections the CMS should be able to edit
       The description is a great place for tone setting, high level information, and editing
       guidelines that are specific to a collection.
     folder: '_blog' # Replace with 'content/posts' in production with a different backend
+    extension: mdx
+    format: frontmatter
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
     summary: '{{title}} - {{year}}/{{month}}/{{day}}'
     create: true # Allow users to create new documents in this collection
