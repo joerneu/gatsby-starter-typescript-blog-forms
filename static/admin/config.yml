@@ -5,25 +5,25 @@ media_folder: static/media
 public_folder: /media
 
 collections: # A list of collections the CMS should be able to edit
-  - name: 'blog' # Used in routes, ie.: /admin/collections/:slug/edit
-    label: 'Blog' # Used in the UI
-    label_singular: 'Post' # Used in the UI, ie: "New Post"
+  - name: blog # Used in routes, ie.: /admin/collections/:slug/edit
+    label: Blog # Used in the UI
+    label_singular: Post # Used in the UI, ie: "New Post"
     description: >
       The description is a great place for tone setting, high level information, and editing
       guidelines that are specific to a collection.
-    folder: '_blog' # Replace with 'content/blog' in production with a different backend
+    folder: '_blog' # Replace with 'content/posts' in production with a different backend
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
     summary: '{{title}} - {{year}}/{{month}}/{{day}}'
     create: true # Allow users to create new documents in this collection
     fields: # The fields each document in this collection have
-      - { label: 'Title', name: 'title', widget: 'string', tagname: 'h1' }
+      - { label: Title, name: title, widget: string, tagname: 'h1' }
       - {
           label: 'Publish Date',
-          name: 'date',
-          widget: 'date',
+          name: date,
+          widget: date,
           format: 'YYYY-MM-DD'
         }
-      - { label: 'Body', name: 'body', widget: 'markdown', hint: 'Main content goes here.' }
-      - { label: 'Excerpt', name: 'excerpt', required: false }
-      - { label: 'Tags', name: 'tags', widget: 'list', required: false }
-      - { label: 'Keywords', name: 'keywords', widget: 'list', required: false }
+      - { label: Body, name: body, widget: markdown, hint: 'Main content goes here.' }
+      - { label: Excerpt, name: excerpt, required: false }
+      - { label: Tags, name: tags, widget: list, required: false }
+      - { label: Keywords, name: keywords, widget: list, required: false }
