@@ -95,12 +95,12 @@ const Responsive = <T extends React.ElementType<any> = "div">({
         css.push(createStyle(rowColumns, display, sm));
         if (md) {
             css.push({
-                [theme.mediaQueries[0]]: createStyle(rowColumns, display, md)
+                [theme.mediaQueries.md]: createStyle(rowColumns, display, md)
             });
         }
         if (lg) {
             css.push({
-                [theme.mediaQueries[1]]: createStyle(rowColumns, display, lg)
+                [theme.mediaQueries.lg]: createStyle(rowColumns, display, lg)
             });
         }
     }
