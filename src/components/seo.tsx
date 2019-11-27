@@ -34,10 +34,7 @@ function SEO({ description, lang, meta, keywords, title }: SeoProps) {
             }
         `
     );
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const metaDescription = description || site!.siteMetadata!.description!;
-    // Waiting for Gatsby to support TypeScript 3.7:
-    //const metaDescription = description ?? site?.siteMetadata?.description ?? undefined;
+    const metaDescription = description ?? site?.siteMetadata?.description ?? undefined;
     let metaData: MetaProps[] = [
         {
             name: "description",
@@ -61,8 +58,7 @@ function SEO({ description, lang, meta, keywords, title }: SeoProps) {
         },
         {
             name: "twitter:creator",
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            content: site!.siteMetadata!.author!
+            content: site?.siteMetadata?.author ?? undefined
         },
         {
             name: "twitter:title",
@@ -92,8 +88,7 @@ function SEO({ description, lang, meta, keywords, title }: SeoProps) {
                 lang
             }}
             title={title}
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            titleTemplate={`%s | ${site!.siteMetadata!.title}`}
+            titleTemplate={`%s | ${site?.siteMetadata?.title}`}
             meta={metaData}
         />
     );
